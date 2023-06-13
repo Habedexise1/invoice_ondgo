@@ -12,8 +12,18 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       obscureText: _obscureText,
+      validator: (value) {
+        RegExp regex = RegExp(r'^.{6,}$');
+        if (value!.isEmpty) {
+          return "Password is required for Login";
+        }
+        if (!regex.hasMatch(value)) {
+          return "Enter Valid Password (Min. 6 Characters)";
+        }
+        return null;
+      },
       decoration: InputDecoration(
         filled: true, // Enable fill color
         fillColor: Colors.grey[200],
@@ -23,7 +33,8 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           ),
         ),
         prefixIcon: Icon(Icons.lock_outline_rounded, color: Colors.blue[100]),
-        labelText: 'Password', labelStyle: TextStyle(color: Colors.blue[100]),
+        labelText: 'Password',
+        labelStyle: TextStyle(color: Colors.blue[100]),
         suffixIcon: IconButton(
           icon: _obscureText
               ? Icon(Icons.visibility_off)

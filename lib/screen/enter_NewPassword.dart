@@ -1,21 +1,22 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:invoice_ondgo/component/email.dart';
-import 'package:invoice_ondgo/component/loginbutton.dart';
-import 'otp.dart';
+import 'package:invoice_ondgo/component/password.dart';
 
-class ForgetPassword extends StatefulWidget {
-  const ForgetPassword({super.key});
+import '../component/loginbutton.dart';
+import 'Register_Bussiness.dart';
+import 'homepage.dart';
+
+class NewPassword extends StatefulWidget {
+  const NewPassword({super.key});
 
   @override
-  State<ForgetPassword> createState() => _ForgetPasswordState();
+  State<NewPassword> createState() => _NewPasswordState();
 }
 
-class _ForgetPasswordState extends State<ForgetPassword> {
-  TextEditingController emailController = TextEditingController();
+class _NewPasswordState extends State<NewPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +26,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         backgroundColor: Color.fromARGB(255, 2, 79, 141),
       ),
       body: Container(
+        height: 700,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/On_the_go.png'),
@@ -33,9 +35,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         ),
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Form(
-              key: _formKey,
+              padding: EdgeInsets.all(15.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +62,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   ),
                   Center(
                     child: Text(
-                      'Forget Password?',
+                      'Enter New Password',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -74,33 +74,43 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     height: 20,
                   ),
                   Text(
-                    'Please enter your email to get OTP code',
+                    'Please enter a new password',
                     style: TextStyle(fontSize: 14, color: Colors.white),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  EmailTextField(controller: TextEditingController()),
+                  PasswordTextField(),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Re-enter password',
+                    style: TextStyle(fontSize: 14, color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  PasswordTextField(),
                   SizedBox(
                     height: 20,
                   ),
                   LoginButton(
                     width: 390,
-                    height: 100,
-                    text: 'GET OTP',
+                    height: 200,
+                    text: 'Login',
                     color: Colors.white,
                     textColor: Color.fromARGB(255, 0, 88, 161),
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => OtpPage()),
+                        MaterialPageRoute(
+                            builder: (context) => Register_BussinessPage()),
                       );
                     },
                   ),
                 ],
-              ),
-            ),
-          ),
+              )),
         ),
       ),
     );

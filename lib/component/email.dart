@@ -8,6 +8,7 @@ class EmailTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      
       controller: controller,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
@@ -24,9 +25,10 @@ class EmailTextField extends StatelessWidget {
       ),
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please enter your email';
-        } else if (!value.contains('@')) {
-          return 'Invalid email address';
+          return ("Please Enter your Email");
+        }
+        if (!RegExp("[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+.[a-z]").hasMatch(value)) {
+          return ("Please Enter a valid Email");
         }
         return null;
       },

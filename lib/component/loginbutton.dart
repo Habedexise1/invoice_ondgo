@@ -8,24 +8,28 @@ class LoginButton extends StatelessWidget {
   final double width;
   final double height;
   final String text;
+  final Color color;
+  final Color textColor;
+  final VoidCallback onPressed;
 
-  LoginButton({required this.width, required this.text, required this.height});
+  LoginButton({
+    required this.width,
+    required this.text,
+    required this.height,
+    required this.color,
+    required this.textColor,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width,
       child: ElevatedButton(
-        onPressed: () {
-          // Navigate to another page or perform any desired action
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => HomePage()),
-          );
-        },
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          primary: Colors.white, // Blue background color
-          onPrimary: Color.fromARGB(255, 0, 88, 161), // White text color
+          foregroundColor: textColor,
+          backgroundColor: color, // White text color
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
